@@ -1,10 +1,10 @@
 import React from 'react'
 
 const NavBar = (props) => {
-    console.log(props)
     return (
         <div className='navbar'>
             <button onClick={props.onClick}>we in here</button>
+            <button onClick={props.makeArray}>Reset Array</button>
         </div>
     )
 }

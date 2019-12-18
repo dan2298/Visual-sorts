@@ -8,6 +8,7 @@ export default class Vizualizer extends React.Component {
             array: []
         }
         this.bubbleSort = this.bubbleSort.bind(this)
+        this.makeArray = this.makeArray.bind(this)
     }
 
     componentDidMount() {
@@ -22,10 +23,13 @@ export default class Vizualizer extends React.Component {
                 if (array[j] > array[j + 1]) {
                     let temp = array[j + 1]
                     array[j + 1] = array[j]
-                    bars[j + 1].style.height = `${array[j]}px`
                     array[j] = temp
-                    bars[j].style.height = `${temp}px`
-                    console.log('array', array)
+                    setTimeout(() => {
+                        bars[j + 1].style.height = `${array[j]}px`
+                        // bars[j + 1].style.backgroundColor = 'red'
+                        bars[j].style.height = `${temp}px`
+                        // bars[j].style.backgroundColor = 'red'
+                    }, i * 50)
                 }
             }
         }
@@ -33,8 +37,8 @@ export default class Vizualizer extends React.Component {
 
     makeArray(num) {
         const array = [];
-        for (let i = 0; i < 105; i++) {
-            array.push(randomize(1, 500))
+        for (let i = 0; i < 200; i++) {
+            array.push(randomize(1, 600))
         }
         this.setState({ array })
     }
@@ -42,7 +46,7 @@ export default class Vizualizer extends React.Component {
     render() {
         return (
             <div>
-                <Navbar onClick={this.bubbleSort}></Navbar>
+                <Navbar onClick={this.bubbleSort} makeArray={this.makeArray}></Navbar>
                 <div className='container'>
                     {this.state.array.map((value, idx) => {
                         value = value + 5
